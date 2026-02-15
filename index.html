@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Morita</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#050507',
+                        card: '#0f0f13',
+                        wine: '#722f37',
+                        gold: '#d4af37',
+                        cream: '#e0e0e0',
+                        muted: '#a0a0a0',
+                    },
+                    fontFamily: {
+                        heading: ['Cinzel', 'serif'],
+                        body: ['Montserrat', 'sans-serif'],
+                        script: ['Playfair Display', 'serif'],
+                    },
+                    boxShadow: {
+                        'glow': '0 0 40px -10px rgba(114, 47, 55, 0.5)',
+                        'glow-gold': '0 0 30px -10px rgba(212, 175, 55, 0.3)',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS (for particles/scrollbar) -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-dark text-cream font-body overflow-x-hidden selection:bg-wine selection:text-white">
+
+    <!-- Background Particles -->
+    <canvas id="particles" class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-40"></canvas>
+
+    <!-- Overlay Vignette -->
+    <div
+        class="fixed top-0 left-0 w-full h-full -z-10 bg-[radial-gradient(circle_at_center,_transparent_0%,_#050507_90%)] pointer-events-none">
+    </div>
+
+    <!-- Film Grain -->
+    <div class="grain-overlay"></div>
+
+    <!-- Mouse Spotlight -->
+    <div id="spotlight"
+        class="fixed top-0 left-0 w-[800px] h-[800px] bg-[radial-gradient(circle_closest-side,rgba(114,47,55,0.15),transparent)] -translate-x-1/2 -translate-y-1/2 pointer-events-none -z-10 blur-3xl transition-opacity duration-500">
+    </div>
+
+    <!-- Music Control -->
+    <button id="musicBtn"
+        class="fixed bottom-8 right-8 w-12 h-12 rounded-full border border-wine/50 bg-wine/10 backdrop-blur-sm flex items-center justify-center text-gold hover:bg-wine hover:text-white transition-all duration-500 z-50 hover:scale-110 hover:shadow-glow group">
+        <span class="text-xl group-hover:animate-spin">♫</span>
+    </button>
+    <audio id="bgMusic" loop hidden>
+        <source src="#" type="audio/mpeg">
+    </audio>
+
+    <!-- Hero Section -->
+    <section id="hero"
+        class="min-h-screen w-full flex flex-col justify-center items-center relative px-4 text-center overflow-hidden">
+        <!-- Decoration Glow -->
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] max-w-[600px] max-h-[600px] bg-wine/20 rounded-full blur-[100px] -z-10 animate-float">
+        </div>
+
+        <div class="hero-content relative z-10">
+            <h1 class="text-5xl md:text-8xl font-heading font-bold mb-6 text-gold drop-shadow-lg leading-tight">
+                Para Morita
+            </h1>
+            <p class="font-script text-xl md:text-2xl text-muted italic mb-10 tracking-wide">
+                "Hay encuentros breves que dejan huellas eternas."
+            </p>
+            <button id="startBtn"
+                class="px-8 py-3 border border-gold/40 rounded-full text-gold hover:bg-wine hover:border-wine hover:text-white transition-all duration-500 hover:shadow-glow uppercase tracking-widest text-sm font-heading">
+                Descubrir
+            </button>
+        </div>
+
+        <div class="absolute bottom-10 animate-bounce text-muted/50">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3">
+                </path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div id="main-content" class="w-full max-w-5xl mx-auto px-6 py-20">
+
+        <!-- Nuestros Recuerdos -->
+        <section class="min-h-screen flex flex-col justify-center py-20">
+            <h2 class="section-title text-4xl font-heading text-center mb-20 text-gold relative inline-block mx-auto">
+                <span class="relative z-10">Nuestros Momentos</span>
+                <span class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-24 h-[1px] bg-wine"></span>
+            </h2>
+
+            <div class="space-y-12 md:space-y-24">
+                <!-- Card 1 -->
+                <div
+                    class="memory-card group relative flex flex-col md:flex-row gap-8 items-center p-8 rounded-3xl border border-white/5 bg-card/50 backdrop-blur-sm hover:border-wine/30 transition-all duration-700 hover:shadow-glow">
+                    <div
+                        class="text-5xl md:text-6xl text-wine opacity-80 group-hover:scale-110 transition-transform duration-500">
+                        🌳</div>
+                    <div class="text-center md:text-left">
+                        <h3 class="text-2xl font-heading text-cream mb-3">El Parque</h3>
+                        <p class="text-muted leading-relaxed">Aquellas caminatas hablando de todo y de nada. La
+                            simplicidad de un paseo se convirtió en uno de mis recuerdos favoritos.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div
+                    class="memory-card group relative flex flex-col md:flex-row-reverse gap-8 items-center p-8 rounded-3xl border border-white/5 bg-card/50 backdrop-blur-sm hover:border-wine/30 transition-all duration-700 hover:shadow-glow">
+                    <div
+                        class="text-5xl md:text-6xl text-wine opacity-80 group-hover:scale-110 transition-transform duration-500">
+                        🎬</div>
+                    <div class="text-center md:text-right">
+                        <h3 class="text-2xl font-heading text-cream mb-3">El Cine</h3>
+                        <p class="text-muted leading-relaxed">Disfrutar de una buena historia contigo. No solo fue la
+                            película, sino la compañía.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div
+                    class="memory-card group relative flex flex-col md:flex-row gap-8 items-center p-8 rounded-3xl border border-white/5 bg-card/50 backdrop-blur-sm hover:border-wine/30 transition-all duration-700 hover:shadow-glow">
+                    <div
+                        class="text-5xl md:text-6xl text-wine opacity-80 group-hover:scale-110 transition-transform duration-500">
+                        ⚡</div>
+                    <div class="text-center md:text-left">
+                        <h3 class="text-2xl font-heading text-cream mb-3">Speed Max</h3>
+                        <p class="text-muted leading-relaxed">La adrenalina y las risas. Pequeños instantes de caos
+                            divertido que quedan grabados.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div
+                    class="memory-card group relative flex flex-col md:flex-row-reverse gap-8 items-center p-8 rounded-3xl border border-white/5 bg-card/50 backdrop-blur-sm hover:border-wine/30 transition-all duration-700 hover:shadow-glow">
+                    <div
+                        class="text-5xl md:text-6xl text-wine opacity-80 group-hover:scale-110 transition-transform duration-500">
+                        🌹</div>
+                    <div class="text-center md:text-right">
+                        <h3 class="text-2xl font-heading text-cream mb-3">14 de Febrero</h3>
+                        <p class="text-muted leading-relaxed">Flores y chocolates. Un pequeño gesto para alguien que
+                            merece mucho más.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admiration Grid -->
+        <section class="py-32">
+            <h2 class="section-title text-4xl font-heading text-center mb-20 text-gold relative inline-block w-full">
+                <span class="relative z-10">Lo que te hace única</span>
+                <span class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-24 h-[1px] bg-wine"></span>
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Trait Item -->
+                <div
+                    class="trait-card p-8 rounded-2xl border border-white/5 bg-card hover:bg-wine/5 hover:border-gold/30 hover:-translate-y-2 transition-all duration-500 group">
+                    <h3 class="text-xl font-heading text-gold mb-4 group-hover:text-cream transition-colors">Madurez
+                    </h3>
+                    <p class="text-muted text-sm">Admiro tu forma de ver el mundo, con esa calma y sabiduría que te
+                        caracteriza.</p>
+                </div>
+
+                <div
+                    class="trait-card p-8 rounded-2xl border border-white/5 bg-card hover:bg-wine/5 hover:border-gold/30 hover:-translate-y-2 transition-all duration-500 group">
+                    <h3 class="text-xl font-heading text-gold mb-4 group-hover:text-cream transition-colors">Tu Voz</h3>
+                    <p class="text-muted text-sm">Esa forma de hablar con cariño, tus diminutivos que suavizan cualquier
+                        día.</p>
+                </div>
+
+                <div
+                    class="trait-card p-8 rounded-2xl border border-white/5 bg-card hover:bg-wine/5 hover:border-gold/30 hover:-translate-y-2 transition-all duration-500 group">
+                    <h3 class="text-xl font-heading text-gold mb-4 group-hover:text-cream transition-colors">Atención
+                    </h3>
+                    <p class="text-muted text-sm">Tus "buenos días" y "buenas noches". Detalles simples que significan
+                        todo.</p>
+                </div>
+
+                <div
+                    class="trait-card p-8 rounded-2xl border border-white/5 bg-card hover:bg-wine/5 hover:border-gold/30 hover:-translate-y-2 transition-all duration-500 group">
+                    <h3 class="text-xl font-heading text-gold mb-4 group-hover:text-cream transition-colors">
+                        Sensibilidad</h3>
+                    <p class="text-muted text-sm">Tu corazón amable y esos corazones que envías. Eres pura bondad.</p>
+                </div>
+
+                <div
+                    class="trait-card p-8 rounded-2xl border border-white/5 bg-card hover:bg-wine/5 hover:border-gold/30 hover:-translate-y-2 transition-all duration-500 group">
+                    <h3 class="text-xl font-heading text-gold mb-4 group-hover:text-cream transition-colors">Dark
+                        Aesthetic</h3>
+                    <p class="text-muted text-sm">Tu gusto por lo oscuro, elegante y misterioso. Ese estilo que te queda
+                        increíble.</p>
+                </div>
+
+                <div
+                    class="trait-card p-8 rounded-2xl border border-white/5 bg-card hover:bg-wine/5 hover:border-gold/30 hover:-translate-y-2 transition-all duration-500 group">
+                    <h3 class="text-xl font-heading text-gold mb-4 group-hover:text-cream transition-colors">Lo Simple
+                    </h3>
+                    <p class="text-muted text-sm">Tu amor por el pan de sal y la comida chatarra. Auténtica y real.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Meaning & Footer -->
+        <section class="py-32 text-center relative min-h-[50vh] flex flex-col justify-center">
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-wine/10 via-transparent to-transparent rounded-full blur-3xl -z-10">
+            </div>
+
+            <div class="meaning-content max-w-2xl mx-auto px-4">
+                <h2 class="text-3xl md:text-5xl font-heading text-cream mb-8 drop-shadow-lg">Lo que significas para mí
+                </h2>
+                <p class="text-lg md:text-xl text-muted mb-6 font-light leading-relaxed">
+                    Valeria, sé que el tiempo ha sido corto, pero la calidad de los momentos supera cualquier medida.
+                    Eres una chica fenomenal, con una luz propia que ni el estilo más oscuro puede ocultar.
+                </p>
+                <p class="text-lg md:text-xl text-muted mb-12 font-light leading-relaxed">
+                    No pretendo nada más que recordarte lo valiosa que eres. Mi deseo es seguir compartiendo risas,
+                    charlas y momentos,
+                    siempre con el respeto y cariño que te has ganado.
+                </p>
+
+                <div class="text-5xl text-wine mb-6 animate-pulse filter drop-shadow-glow">🖤 🦇 🖤</div>
+                <p class="font-script text-2xl text-gold italic">"Para mi querida Morita."</p>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Scripts -->
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
+
+    <!-- GSAP Core -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- GSAP ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- GSAP ScrollToPlugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
